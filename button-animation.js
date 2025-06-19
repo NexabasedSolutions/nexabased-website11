@@ -1,12 +1,12 @@
-// ERWEITERTE BUTTON-ANIMATION für Vapi-Gespräche
-// Fügt lebendige Animationen hinzu, die während des Gesprächs aktiviert werden
+// VERBESSERTE VAPI BUTTON-ANIMATION
+// Rot bei Verbindung + Intensives Pulsieren beim KI-Sprechen
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Button-Animation wird geladen...');
+    console.log('Verbesserte Button-Animation wird geladen...');
     
     // CSS-Animationen hinzufügen
     const animationStyle = document.createElement('style');
-    animationStyle.id = 'vapi-button-animations';
+    animationStyle.id = 'vapi-button-enhanced-animations';
     animationStyle.textContent = `
         /* Basis Button-Position (unverändert) */
         button[style*="position: absolute"] {
@@ -25,120 +25,191 @@ document.addEventListener('DOMContentLoaded', function() {
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
-            transition: all 0.3s ease !important;
+            transition: background 0.5s ease, box-shadow 0.3s ease !important;
         }
         
-        /* NEUE ANIMATIONEN */
+        /* VERBESSERTE ANIMATIONEN */
         
-        /* Pulsing Animation für aktives Gespräch */
-        @keyframes vapiPulse {
+        /* Sanftes Pulsieren für Bereitschaft (Blau) */
+        @keyframes idlePulse {
             0% {
                 transform: scale(1);
                 box-shadow: 0 4px 15px rgba(29, 161, 242, 0.4);
-            }
-            50% {
-                transform: scale(1.1);
-                box-shadow: 0 6px 25px rgba(29, 161, 242, 0.8);
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 4px 15px rgba(29, 161, 242, 0.4);
-            }
-        }
-        
-        /* Glowing Animation für KI-Sprechen */
-        @keyframes vapiGlow {
-            0% {
-                background: #1da1f2;
-                box-shadow: 0 4px 15px rgba(29, 161, 242, 0.4);
-            }
-            25% {
-                background: #00d4ff;
-                box-shadow: 0 6px 20px rgba(0, 212, 255, 0.6);
-            }
-            50% {
-                background: #1da1f2;
-                box-shadow: 0 8px 30px rgba(29, 161, 242, 0.8);
-            }
-            75% {
-                background: #0099cc;
-                box-shadow: 0 6px 20px rgba(0, 153, 204, 0.6);
-            }
-            100% {
-                background: #1da1f2;
-                box-shadow: 0 4px 15px rgba(29, 161, 242, 0.4);
-            }
-        }
-        
-        /* Breathing Animation für Bereitschaft */
-        @keyframes vapiBreathe {
-            0% {
-                transform: scale(1);
-                opacity: 1;
             }
             50% {
                 transform: scale(1.05);
-                opacity: 0.9;
+                box-shadow: 0 6px 20px rgba(29, 161, 242, 0.6);
             }
             100% {
                 transform: scale(1);
-                opacity: 1;
+                box-shadow: 0 4px 15px rgba(29, 161, 242, 0.4);
             }
         }
         
-        /* Ring Animation für eingehende Anrufe */
-        @keyframes vapiRing {
+        /* Verbindungsaufbau Animation (Gelb zu Rot) */
+        @keyframes connecting {
             0% {
-                transform: scale(1) rotate(0deg);
+                background: #1da1f2;
+                transform: scale(1);
                 box-shadow: 0 4px 15px rgba(29, 161, 242, 0.4);
             }
             25% {
-                transform: scale(1.15) rotate(5deg);
-                box-shadow: 0 8px 25px rgba(255, 193, 7, 0.7);
+                background: #ffc107;
+                transform: scale(1.1);
+                box-shadow: 0 6px 20px rgba(255, 193, 7, 0.6);
             }
             50% {
-                transform: scale(1) rotate(0deg);
-                box-shadow: 0 4px 15px rgba(29, 161, 242, 0.4);
+                background: #ff6b35;
+                transform: scale(1.05);
+                box-shadow: 0 8px 25px rgba(255, 107, 53, 0.7);
             }
             75% {
-                transform: scale(1.15) rotate(-5deg);
-                box-shadow: 0 8px 25px rgba(255, 193, 7, 0.7);
+                background: #dc3545;
+                transform: scale(1.1);
+                box-shadow: 0 6px 20px rgba(220, 53, 69, 0.6);
             }
             100% {
-                transform: scale(1) rotate(0deg);
+                background: #dc3545;
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(220, 53, 69, 0.5);
+            }
+        }
+        
+        /* Verbunden - Sanftes Rot-Pulsieren */
+        @keyframes connectedPulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(220, 53, 69, 0.5);
+            }
+            50% {
+                transform: scale(1.03);
+                box-shadow: 0 6px 18px rgba(220, 53, 69, 0.7);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(220, 53, 69, 0.5);
+            }
+        }
+        
+        /* INTENSIVES KI-SPRECHEN PULSIEREN (Sehr sichtbar!) */
+        @keyframes aiSpeaking {
+            0% {
+                transform: scale(1);
+                background: #dc3545;
+                box-shadow: 0 4px 15px rgba(220, 53, 69, 0.5);
+            }
+            25% {
+                transform: scale(1.2);
+                background: #ff1744;
+                box-shadow: 0 10px 40px rgba(255, 23, 68, 0.9);
+            }
+            50% {
+                transform: scale(1.15);
+                background: #f44336;
+                box-shadow: 0 12px 45px rgba(244, 67, 54, 1);
+            }
+            75% {
+                transform: scale(1.25);
+                background: #e91e63;
+                box-shadow: 0 15px 50px rgba(233, 30, 99, 0.95);
+            }
+            100% {
+                transform: scale(1);
+                background: #dc3545;
+                box-shadow: 0 4px 15px rgba(220, 53, 69, 0.5);
+            }
+        }
+        
+        /* Zuhören - Mittleres Pulsieren (Rot) */
+        @keyframes aiListening {
+            0% {
+                transform: scale(1);
+                background: #dc3545;
+                box-shadow: 0 4px 15px rgba(220, 53, 69, 0.5);
+            }
+            50% {
+                transform: scale(1.08);
+                background: #c82333;
+                box-shadow: 0 8px 30px rgba(200, 35, 51, 0.8);
+            }
+            100% {
+                transform: scale(1);
+                background: #dc3545;
+                box-shadow: 0 4px 15px rgba(220, 53, 69, 0.5);
+            }
+        }
+        
+        /* Auflegen Animation (Rot zu Blau) */
+        @keyframes disconnecting {
+            0% {
+                background: #dc3545;
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(220, 53, 69, 0.5);
+            }
+            25% {
+                background: #6f42c1;
+                transform: scale(0.95);
+                box-shadow: 0 6px 20px rgba(111, 66, 193, 0.6);
+            }
+            50% {
+                background: #007bff;
+                transform: scale(1.05);
+                box-shadow: 0 8px 25px rgba(0, 123, 255, 0.7);
+            }
+            75% {
+                background: #17a2b8;
+                transform: scale(0.98);
+                box-shadow: 0 6px 20px rgba(23, 162, 184, 0.6);
+            }
+            100% {
+                background: #1da1f2;
+                transform: scale(1);
                 box-shadow: 0 4px 15px rgba(29, 161, 242, 0.4);
             }
         }
         
-        /* Status-Klassen für verschiedene Zustände */
+        /* STATUS-KLASSEN für verschiedene Zustände */
         .vapi-button-idle {
-            animation: vapiBreathe 3s ease-in-out infinite;
+            background: #1da1f2 !important;
+            animation: idlePulse 3s ease-in-out infinite !important;
         }
         
-        .vapi-button-calling {
-            animation: vapiRing 1s ease-in-out infinite;
-            background: #ffc107 !important;
+        .vapi-button-connecting {
+            animation: connecting 2s ease-in-out !important;
         }
         
         .vapi-button-connected {
-            animation: vapiPulse 1.5s ease-in-out infinite;
-            background: #28a745 !important;
+            background: #dc3545 !important;
+            animation: connectedPulse 2.5s ease-in-out infinite !important;
         }
         
         .vapi-button-speaking {
-            animation: vapiGlow 0.8s ease-in-out infinite;
+            background: #dc3545 !important;
+            animation: aiSpeaking 0.6s ease-in-out infinite !important;
         }
         
         .vapi-button-listening {
-            animation: vapiPulse 2s ease-in-out infinite;
-            background: #17a2b8 !important;
+            background: #dc3545 !important;
+            animation: aiListening 1.2s ease-in-out infinite !important;
         }
         
-        /* Hover-Effekt (unverändert) */
-        button[style*="position: absolute"]:hover {
+        .vapi-button-disconnecting {
+            animation: disconnecting 1.5s ease-in-out !important;
+        }
+        
+        /* Hover-Effekt (angepasst für Zustand) */
+        button[style*="position: absolute"]:hover.vapi-button-idle {
             background: #0d8bd9 !important;
             transform: scale(1.05) !important;
-            box-shadow: 0 6px 20px rgba(29, 161, 242, 0.6) !important;
+            box-shadow: 0 6px 20px rgba(13, 139, 217, 0.8) !important;
+        }
+        
+        button[style*="position: absolute"]:hover.vapi-button-connected,
+        button[style*="position: absolute"]:hover.vapi-button-speaking,
+        button[style*="position: absolute"]:hover.vapi-button-listening {
+            background: #c82333 !important;
+            transform: scale(1.05) !important;
+            box-shadow: 0 8px 25px rgba(200, 35, 51, 0.9) !important;
         }
         
         /* Responsive (unverändert) */
@@ -162,13 +233,14 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     
     document.head.appendChild(animationStyle);
-    console.log('Button-Animationen hinzugefügt');
+    console.log('Verbesserte Button-Animationen hinzugefügt');
     
     // Button-Referenz für Animationen
     let vapiButton = null;
     let currentState = 'idle';
+    let isConnected = false;
     
-    // Button finden und Basis-Setup
+    // Button finden und Setup
     function setupButton() {
         vapiButton = Array.from(document.querySelectorAll('button')).find(btn => {
             const img = btn.querySelector('img');
@@ -192,79 +264,142 @@ document.addEventListener('DOMContentLoaded', function() {
             vapiButton.style.display = 'flex';
             vapiButton.style.alignItems = 'center';
             vapiButton.style.justifyContent = 'center';
-            vapiButton.style.transition = 'all 0.3s ease';
+            vapiButton.style.transition = 'background 0.5s ease, box-shadow 0.3s ease';
             
             // Idle-Animation starten
             setButtonState('idle');
             
-            console.log('Button gefunden und animiert');
+            console.log('Button gefunden und verbessert animiert');
             return true;
         }
         return false;
     }
     
-    // Button-Status ändern
+    // Button-Status ändern mit verbesserter Logik
     function setButtonState(state) {
         if (!vapiButton) return;
         
         // Alle Animations-Klassen entfernen
-        vapiButton.classList.remove('vapi-button-idle', 'vapi-button-calling', 'vapi-button-connected', 'vapi-button-speaking', 'vapi-button-listening');
+        vapiButton.classList.remove(
+            'vapi-button-idle', 
+            'vapi-button-connecting', 
+            'vapi-button-connected', 
+            'vapi-button-speaking', 
+            'vapi-button-listening',
+            'vapi-button-disconnecting'
+        );
         
         // Neue Klasse hinzufügen
         vapiButton.classList.add(`vapi-button-${state}`);
         currentState = state;
         
-        console.log(`Button-Status geändert zu: ${state}`);
+        // Verbindungsstatus verfolgen
+        if (state === 'connected' || state === 'speaking' || state === 'listening') {
+            isConnected = true;
+        } else if (state === 'idle') {
+            isConnected = false;
+        }
+        
+        console.log(`Button-Status geändert zu: ${state} (Verbunden: ${isConnected})`);
     }
     
-    // Vapi-Events überwachen
+    // Verbesserte Vapi-Events überwachen
     function setupVapiEventListeners() {
         if (window.vapiInstance) {
-            console.log('Vapi-Events werden überwacht...');
+            console.log('Verbesserte Vapi-Events werden überwacht...');
             
             // Event-Listener für Vapi-Status
             if (window.vapiInstance.on) {
+                // Anruf startet - Verbindungsaufbau
                 window.vapiInstance.on('call-start', () => {
-                    console.log('Anruf gestartet');
-                    setButtonState('calling');
+                    console.log('🔄 Anruf startet - Verbindungsaufbau');
+                    setButtonState('connecting');
+                    
+                    // Nach 2 Sekunden zu "verbunden" wechseln
+                    setTimeout(() => {
+                        setButtonState('connected');
+                    }, 2000);
                 });
                 
+                // Anruf beendet - Zurück zu Blau
                 window.vapiInstance.on('call-end', () => {
-                    console.log('Anruf beendet');
+                    console.log('📞 Anruf beendet - Zurück zu Blau');
+                    setButtonState('disconnecting');
+                    
+                    // Nach Animation zu idle wechseln
+                    setTimeout(() => {
+                        setButtonState('idle');
+                    }, 1500);
+                });
+                
+                // KI spricht - INTENSIVES Pulsieren
+                window.vapiInstance.on('speech-start', () => {
+                    console.log('🗣️ KI spricht - INTENSIVES Pulsieren');
+                    if (isConnected) {
+                        setButtonState('speaking');
+                    }
+                });
+                
+                // KI hört auf zu sprechen - Normales Rot-Pulsieren
+                window.vapiInstance.on('speech-end', () => {
+                    console.log('👂 KI hört zu - Normales Rot-Pulsieren');
+                    if (isConnected) {
+                        setButtonState('listening');
+                    }
+                });
+                
+                // Message-Events für feinere Kontrolle
+                window.vapiInstance.on('message', (message) => {
+                    if (message.type === 'conversation-update') {
+                        if (message.role === 'assistant' && isConnected) {
+                            console.log('💬 Assistant spricht');
+                            setButtonState('speaking');
+                        } else if (message.role === 'user' && isConnected) {
+                            console.log('👤 User spricht');
+                            setButtonState('listening');
+                        }
+                    }
+                    
+                    // Transcript-Events
+                    if (message.type === 'transcript' && isConnected) {
+                        if (message.role === 'assistant') {
+                            setButtonState('speaking');
+                        } else {
+                            setButtonState('listening');
+                        }
+                    }
+                });
+                
+                // Weitere Events
+                window.vapiInstance.on('error', () => {
+                    console.log('❌ Fehler - Zurück zu Blau');
                     setButtonState('idle');
                 });
                 
-                window.vapiInstance.on('speech-start', () => {
-                    console.log('KI spricht');
-                    setButtonState('speaking');
-                });
-                
-                window.vapiInstance.on('speech-end', () => {
-                    console.log('KI hört auf zu sprechen');
-                    setButtonState('listening');
-                });
-                
-                window.vapiInstance.on('message', (message) => {
-                    if (message.type === 'conversation-update') {
-                        if (message.role === 'assistant') {
-                            setButtonState('speaking');
-                        } else if (message.role === 'user') {
-                            setButtonState('listening');
-                        }
+                window.vapiInstance.on('volume-level', (level) => {
+                    // Bei hohem Volume-Level = KI spricht wahrscheinlich
+                    if (level > 0.1 && isConnected && currentState !== 'speaking') {
+                        setButtonState('speaking');
+                    } else if (level <= 0.1 && isConnected && currentState === 'speaking') {
+                        setButtonState('listening');
                     }
                 });
             }
         }
         
-        // Fallback: Periodische Zustandsänderung für Demo-Zwecke
-        setInterval(() => {
-            if (currentState === 'idle') {
-                // Zufällige sanfte Animation alle 10 Sekunden
-                if (Math.random() > 0.7) {
-                    setButtonState('idle');
-                }
-            }
-        }, 10000);
+        // Fallback: Demo-Simulation für Tests
+        if (window.location.search.includes('demo=true')) {
+            console.log('🎭 Demo-Modus aktiviert');
+            setTimeout(() => {
+                setButtonState('connecting');
+                setTimeout(() => setButtonState('connected'), 2000);
+                setTimeout(() => setButtonState('speaking'), 4000);
+                setTimeout(() => setButtonState('listening'), 6000);
+                setTimeout(() => setButtonState('speaking'), 8000);
+                setTimeout(() => setButtonState('disconnecting'), 10000);
+                setTimeout(() => setButtonState('idle'), 12000);
+            }, 3000);
+        }
     }
     
     // Setup ausführen
@@ -293,6 +428,6 @@ document.addEventListener('DOMContentLoaded', function() {
         subtree: true
     });
     
-    console.log('Button-Animation System aktiviert');
+    console.log('🎨 Verbesserte Button-Animation System aktiviert');
+    console.log('🔵 Blau = Bereit | 🔴 Rot = Verbunden | 💥 Intensiv = KI spricht');
 });
-
