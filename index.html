@@ -245,5 +245,55 @@
     <script src="button-fix.js"></script>
     <script src="button-animation.js"></script>
     <script src="demo-button-integration.js"></script>
+    <script>
+// SUPER EINFACHE DEMO-BUTTON LÖSUNG
+window.addEventListener('load', function() {
+    console.log('🎯 Starte einfache Demo-Button Integration...');
+    
+    // Finde den Vapi-Button (roter Button)
+    function findVapiButton() {
+        const buttons = document.querySelectorAll('button');
+        for (let btn of buttons) {
+            const img = btn.querySelector('img[alt="Icon"]');
+            if (img) return btn;
+        }
+        return null;
+    }
+    
+    // Simuliere Vapi-Button Click
+    function clickVapiButton() {
+        const vapiButton = findVapiButton();
+        if (vapiButton) {
+            console.log('📞 Klicke Vapi-Button...');
+            vapiButton.click();
+            return true;
+        }
+        return false;
+    }
+    
+    // Demo-Buttons konfigurieren
+    setTimeout(function() {
+        console.log('🔍 Suche Demo-Buttons...');
+        
+        // Alle Links mit "demo" finden
+        const allLinks = document.querySelectorAll('a');
+        allLinks.forEach(link => {
+            const text = link.textContent.toLowerCase();
+            if (text.includes('demo')) {
+                console.log('✅ Demo-Button gefunden:', text);
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('🎯 Demo-Button geklickt:', text);
+                    clickVapiButton();
+                });
+            }
+        });
+        
+        console.log('✅ Demo-Button Integration abgeschlossen');
+    }, 1000);
+});
+</script>
+</body>
+</html>
 </body>
 </html>
