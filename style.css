@@ -1355,4 +1355,52 @@ footer {
         width: 45px;
     }
 }
+/* Animierter Button */
+button[style*="position: absolute"] {
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    left: auto !important;
+    z-index: 9999 !important;
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50% !important;
+    background: #1da1f2 !important;
+    box-shadow: 0 4px 15px rgba(29, 161, 242, 0.4) !important;
+    animation: gentlePulse 2s ease-in-out infinite;
+}
 
+@keyframes gentlePulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(29, 161, 242, 0.4);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(29, 161, 242, 0.6);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(29, 161, 242, 0.4);
+    }
+}
+
+button[style*="position: absolute"]:hover {
+    background: #0d8bd9 !important;
+    animation: intensePulse 1s ease-in-out infinite !important;
+}
+
+@keyframes intensePulse {
+    0% {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(13, 139, 217, 0.8);
+    }
+    50% {
+        transform: scale(1.15);
+        box-shadow: 0 12px 35px rgba(13, 139, 217, 1);
+    }
+    100% {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(13, 139, 217, 0.8);
+    }
+}
