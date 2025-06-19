@@ -1,8 +1,8 @@
-// KORRIGIERTE DEMO-BUTTON INTEGRATION
-// Vereinfacht und optimiert für Ihre Website
+// SOFORTIGE DEMO-BUTTON INTEGRATION
+// Führt sich sofort aus, ohne auf DOMContentLoaded zu warten
 
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('🎯 Demo-Button Integration wird geladen...');
+(function() {
+    console.log('🎯 Demo-Button Integration wird sofort geladen...');
     
     let isCallActive = false;
     let vapiInstance = null;
@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function setupDemoButtons() {
         console.log('🔍 Suche Demo-Buttons...');
         
-        // Alle Demo-Buttons finden
         const demoButtons = [];
         
         // 1. Navigation Demo-Button
@@ -222,6 +221,13 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             console.log('🚀 Starte Demo-Button Integration...');
             
+            // Warte auf DOM
+            if (document.readyState === 'loading') {
+                await new Promise(resolve => {
+                    document.addEventListener('DOMContentLoaded', resolve);
+                });
+            }
+            
             // Warte auf Vapi
             await waitForVapi();
             
@@ -249,40 +255,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Starte nach kurzer Verzögerung
-    setTimeout(initialize, 1000);
-    
-    // Zusätzliche Überwachung für dynamische Inhalte
-    const observer = new MutationObserver(function(mutations) {
-        let shouldReinitialize = false;
-        
-        mutations.forEach(function(mutation) {
-            if (mutation.type === 'childList') {
-                mutation.addedNodes.forEach(function(node) {
-                    if (node.nodeType === 1) {
-                        const hasNewButtons = node.querySelectorAll && 
-                            node.querySelectorAll('a[href="#contact"], button').length > 0;
-                        if (hasNewButtons) {
-                            shouldReinitialize = true;
-                        }
-                    }
-                });
-            }
-        });
-        
-        if (shouldReinitialize) {
-            console.log('🔄 Neue Buttons erkannt, aktualisiere...');
-            setTimeout(() => {
-                setupDemoButtons();
-                setupVapiButton();
-            }, 500);
-        }
-    });
-    
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true
-    });
+    // Starte sofort
+    initialize();
     
     console.log('🎯 Demo-Button Integration System geladen');
-});
+})();
+
