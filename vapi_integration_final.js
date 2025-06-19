@@ -1,4 +1,4 @@
-// Direkte VAPI Integration - Vereinfacht und funktional
+// Verbesserte VAPI Integration mit korrekter Button-Positionierung
 document.addEventListener('DOMContentLoaded', function() {
     console.log('VAPI Integration wird geladen...');
     
@@ -15,13 +15,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const VAPI_API_KEY = "dc061998-8b89-44ca-8980-c58502b956fe"; // Ihr Public Key aus dem VAPI Dashboard
         const ASSISTANT_ID = "471f2e1b-d4e9-4c78-8ad5-9ce7afd8e479"; // Ihre Assistant ID
         
-        // VAPI initialisieren
+        // VAPI initialisieren mit korrekter Positionierung
         try {
             window.vapiInstance = window.vapiSDK.run({
                 apiKey: VAPI_API_KEY,
                 assistant: ASSISTANT_ID,
                 config: {
-                    // Floating Button Konfiguration
+                    // Floating Button Konfiguration - RECHTS UNTEN
                     position: "bottom-right",
                     offset: {
                         bottom: "20px",
@@ -34,12 +34,19 @@ document.addEventListener('DOMContentLoaded', function() {
                         height: "60px",
                         boxShadow: "0 4px 15px rgba(29, 161, 242, 0.4)",
                         position: "fixed",
-                        zIndex: "9999"
+                        zIndex: "9999",
+                        bottom: "20px",
+                        right: "20px",
+                        left: "auto" // Wichtig: left auf auto setzen
                     }
                 }
             });
             
             console.log('VAPI erfolgreich initialisiert');
+            
+            // Button-Position nach Initialisierung korrigieren
+            setTimeout(fixButtonPosition, 1000);
+            setTimeout(fixButtonPosition, 3000); // Zweiter Versuch nach 3 Sekunden
             
             // Demo-Buttons finden und Event-Listener hinzufügen
             setTimeout(setupDemoButtons, 1000);
@@ -54,6 +61,74 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     document.head.appendChild(script);
+    
+    // Funktion zur Korrektur der Button-Position
+    function fixButtonPosition() {
+        console.log('Korrigiere Button-Position...');
+        
+        // Verschiedene Selektoren für den VAPI-Button
+        const buttonSelectors = [
+            '[data-vapi-button]',
+            '.vapi-button',
+            '#vapi-button',
+            'button[style*="position: fixed"]',
+            'div[style*="position: fixed"]'
+        ];
+        
+        buttonSelectors.forEach(selector => {
+            const buttons = document.querySelectorAll(selector);
+            buttons.forEach(button => {
+                if (button) {
+                    console.log('Button gefunden:', selector, button);
+                    
+                    // Position korrigieren
+                    button.style.position = 'fixed';
+                    button.style.bottom = '20px';
+                    button.style.right = '20px';
+                    button.style.left = 'auto';
+                    button.style.zIndex = '9999';
+                    button.style.width = '60px';
+                    button.style.height = '60px';
+                    button.style.borderRadius = '50%';
+                    button.style.background = '#1da1f2';
+                    button.style.boxShadow = '0 4px 15px rgba(29, 161, 242, 0.4)';
+                    button.style.border = 'none';
+                    button.style.cursor = 'pointer';
+                    button.style.display = 'flex';
+                    button.style.alignItems = 'center';
+                    button.style.justifyContent = 'center';
+                    button.style.color = 'white';
+                    button.style.fontSize = '20px';
+                    button.style.transition = 'all 0.3s ease';
+                    
+                    console.log('Button-Position korrigiert');
+                }
+            });
+        });
+        
+        // Fallback: Alle fixed-positionierten Elemente prüfen
+        const allFixedElements = document.querySelectorAll('*');
+        allFixedElements.forEach(element => {
+            const style = window.getComputedStyle(element);
+            if (style.position === 'fixed' && 
+                (element.textContent.includes('📞') || 
+                 element.innerHTML.includes('phone') || 
+                 element.innerHTML.includes('call') ||
+                 element.tagName === 'BUTTON')) {
+                
+                // Prüfen ob es links positioniert ist
+                const left = parseInt(style.left);
+                const right = parseInt(style.right);
+                
+                if (left < 100 && (isNaN(right) || right > 100)) {
+                    console.log('Verdächtiger Button gefunden, korrigiere Position:', element);
+                    element.style.left = 'auto';
+                    element.style.right = '20px';
+                    element.style.bottom = '20px';
+                }
+            }
+        });
+    }
     
     // Demo-Buttons Setup
     function setupDemoButtons() {
@@ -135,14 +210,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // CSS für den Floating Button hinzufügen
+    // CSS für den Floating Button hinzufügen (verbessert)
     const style = document.createElement('style');
     style.textContent = `
-        /* VAPI Floating Button Styles */
-        [data-vapi-button] {
+        /* VAPI Floating Button Styles - RECHTS UNTEN */
+        [data-vapi-button],
+        .vapi-button,
+        #vapi-button {
             position: fixed !important;
             bottom: 20px !important;
             right: 20px !important;
+            left: auto !important;
             z-index: 9999 !important;
             width: 60px !important;
             height: 60px !important;
@@ -156,17 +234,30 @@ document.addEventListener('DOMContentLoaded', function() {
             justify-content: center !important;
             color: white !important;
             font-size: 20px !important;
+            transition: all 0.3s ease !important;
         }
         
-        [data-vapi-button]:hover {
+        [data-vapi-button]:hover,
+        .vapi-button:hover,
+        #vapi-button:hover {
             background: #0d8bd9 !important;
             transform: scale(1.05) !important;
-            transition: all 0.2s ease !important;
+            box-shadow: 0 6px 20px rgba(29, 161, 242, 0.6) !important;
+        }
+        
+        /* Überschreibung für alle fixed-positionierten Button-ähnlichen Elemente */
+        button[style*="position: fixed"],
+        div[style*="position: fixed"] {
+            bottom: 20px !important;
+            right: 20px !important;
+            left: auto !important;
         }
         
         /* Responsive Anpassungen */
         @media (max-width: 768px) {
-            [data-vapi-button] {
+            [data-vapi-button],
+            .vapi-button,
+            #vapi-button {
                 bottom: 15px !important;
                 right: 15px !important;
                 width: 50px !important;
@@ -174,6 +265,42 @@ document.addEventListener('DOMContentLoaded', function() {
                 font-size: 18px !important;
             }
         }
+        
+        @media (max-width: 480px) {
+            [data-vapi-button],
+            .vapi-button,
+            #vapi-button {
+                bottom: 10px !important;
+                right: 10px !important;
+                width: 45px !important;
+                height: 45px !important;
+                font-size: 16px !important;
+            }
+        }
     `;
     document.head.appendChild(style);
+    
+    // Überwachung für dynamisch hinzugefügte Elemente
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'childList') {
+                mutation.addedNodes.forEach(function(node) {
+                    if (node.nodeType === 1) { // Element node
+                        // Prüfen ob es ein Button ist
+                        if (node.tagName === 'BUTTON' || 
+                            node.querySelector && node.querySelector('button')) {
+                            setTimeout(fixButtonPosition, 100);
+                        }
+                    }
+                });
+            }
+        });
+    });
+    
+    // Observer starten
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
 });
+
