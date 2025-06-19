@@ -10,6 +10,20 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(script);
     };
 
+    // Füge CSS für den sticky Floating Button hinzu
+    const addStickyButtonCSS = () => {
+        const style = document.createElement('style');
+        style.textContent = `
+            .vapi-floating-button {
+                position: fixed !important;
+                bottom: 20px !important;
+                right: 20px !important;
+                z-index: 9999 !important;
+            }
+        `;
+        document.head.appendChild(style);
+    };
+
     // VAPI mit Ihren Zugangsdaten initialisieren
     const initializeVapi = () => {
         // Ersetzen Sie diese mit Ihren tatsächlichen VAPI-Zugangsdaten
@@ -42,15 +56,17 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             // Icon statt Text für den Floating Button
             buttonMode: "icon",
-            // Position des Widgets auf der Seite - immer unten rechts
+            // Position des Widgets auf der Seite - explizit rechts unten
             position: "bottom-right",
             // Immer sichtbar beim Scrollen
             sticky: true,
-            // Abstand vom Rand
+            // Abstand vom Rand (rechts und unten)
             offset: {
                 bottom: '20px',
                 right: '20px'
-            }
+            },
+            // Zusätzliche Klasse für CSS-Styling
+            buttonClass: "vapi-floating-button"
         };
 
         // VAPI SDK initialisieren
@@ -66,33 +82,111 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Event-Handler für Anruf-Lebenszyklus einrichten
         setupCallEventHandlers();
+        
+        // Stelle sicher, dass der Button sticky ist
+        ensureStickyButton();
+    };
+
+    // Stelle sicher, dass der Button sticky ist
+    const ensureStickyButton = () => {
+        // Warte kurz, bis das Widget gerendert ist
+        setTimeout(() => {
+            const vapiButton = document.querySelector('.vapi-button');
+            if (vapiButton) {
+                // Füge zusätzliche Klasse hinzu
+                vapiButton.classList.add('vapi-floating-button');
+                
+                // Stelle sicher, dass der Button die richtigen Styles hat
+                vapiButton.style.position = 'fixed';
+                vapiButton.style.bottom = '20px';
+                vapiButton.style.right = '20px';
+                vapiButton.style.zIndex = '9999';
+                
+                console.log('Floating Button wurde korrekt positioniert');
+            } else {
+                console.warn('VAPI Button konnte nicht gefunden werden');
+            }
+        }, 1000);
     };
 
     // Klick-Handler für Demo-Buttons einrichten
     const setupDemoButtons = () => {
         // Erster Demo-Button im Hero-Bereich
-        const demoButton = document.getElementById('demo-button');
-        if (demoButton) {
-            demoButton.addEventListener('click', function(e) {
-                e.preventDefault(); // Standardnavigation verhindern
-                if (window.vapiInstance && window.vapiInstance.startCall) {
-                    window.vapiInstance.startCall();
-                    console.log('Anruf vom Hero-Bereich Demo-Button initiiert');
-                }
-            });
-        }
+        const setupHeroButton = () => {
+            // Versuche verschiedene Selektoren für den Hero-Button
+            const demoButton = document.getElementById('demo-button') || 
+                              document.querySelector('.hero-section .cta-button') ||
+                              document.querySelector('a.button[href*="demo"]') ||
+                              document.querySelector('button:contains("Demo buchen")');
+            
+            if (demoButton) {
+                console.log('Hero Demo-Button gefunden:', demoButton);
+                demoButton.addEventListener('click', function(e) {
+                    e.preventDefault(); // Standardnavigation verhindern
+                    console.log('Hero Demo-Button wurde geklickt');
+                    if (window.vapiInstance && typeof window.vapiInstance.startCall === 'function') {
+                        window.vapiInstance.startCall();
+                        console.log('Anruf vom Hero-Bereich Demo-Button initiiert');
+                    } else {
+                        console.error('VAPI Instance oder startCall Funktion nicht verfügbar');
+                    }
+                });
+            } else {
+                console.warn('Demo-Button im Hero-Bereich nicht gefunden');
+            }
+        };
 
         // Zweiter Demo-Button im Next-Steps-Bereich
-        const demoRequestButton = document.querySelector('.next-steps-section .cta-button');
-        if (demoRequestButton) {
-            demoRequestButton.addEventListener('click', function(e) {
-                e.preventDefault(); // Standardnavigation verhindern
-                if (window.vapiInstance && window.vapiInstance.startCall) {
-                    window.vapiInstance.startCall();
-                    console.log('Anruf vom Next-Steps-Bereich Demo-Button initiiert');
+        const setupNextStepsButton = () => {
+            // Versuche verschiedene Selektoren für den Next-Steps-Button
+            const demoRequestButton = document.querySelector('.next-steps-section .cta-button') || 
+                                     document.querySelector('#next-steps .cta-button') ||
+                                     document.querySelector('a.cta-button[href*="demo"]') ||
+                                     document.querySelector('button:contains("Demo anfordern")');
+            
+            if (demoRequestButton) {
+                console.log('Next-Steps Demo-Button gefunden:', demoRequestButton);
+                demoRequestButton.addEventListener('click', function(e) {
+                    e.preventDefault(); // Standardnavigation verhindern
+                    console.log('Next-Steps Demo-Button wurde geklickt');
+                    if (window.vapiInstance && typeof window.vapiInstance.startCall === 'function') {
+                        window.vapiInstance.startCall();
+                        console.log('Anruf vom Next-Steps-Bereich Demo-Button initiiert');
+                    } else {
+                        console.error('VAPI Instance oder startCall Funktion nicht verfügbar');
+                    }
+                });
+            } else {
+                console.warn('Demo-Request-Button im Next-Steps-Bereich nicht gefunden');
+            }
+        };
+
+        // Fallback: Alle Buttons mit "Demo" im Text oder in der Klasse
+        const setupFallbackButtons = () => {
+            document.querySelectorAll('button, a.button, .btn, .button, a.cta-button').forEach(button => {
+                const buttonText = button.textContent.toLowerCase();
+                const buttonClass = button.className.toLowerCase();
+                
+                if (buttonText.includes('demo') || buttonClass.includes('demo')) {
+                    console.log('Fallback Demo-Button gefunden:', button);
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault(); // Standardnavigation verhindern
+                        console.log('Fallback Demo-Button wurde geklickt');
+                        if (window.vapiInstance && typeof window.vapiInstance.startCall === 'function') {
+                            window.vapiInstance.startCall();
+                            console.log('Anruf von einem Demo-Button initiiert (Fallback)');
+                        } else {
+                            console.error('VAPI Instance oder startCall Funktion nicht verfügbar');
+                        }
+                    });
                 }
             });
-        }
+        };
+
+        // Führe alle Button-Setup-Funktionen aus
+        setupHeroButton();
+        setupNextStepsButton();
+        setupFallbackButtons();
     };
 
     // Event-Handler für Anruf-Lebenszyklus
@@ -112,6 +206,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
+    // Füge CSS für den sticky Button hinzu
+    addStickyButtonCSS();
+    
     // VAPI SDK laden
     loadVapiSDK();
 });
