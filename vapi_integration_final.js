@@ -1,4 +1,4 @@
-// VAPI WebRTC Integration für Demo-Buttons
+// VAPI WebRTC Integration für Demo-Buttons mit Floating Button
 document.addEventListener('DOMContentLoaded', function() {
     // VAPI SDK laden
     const loadVapiSDK = () => {
@@ -16,17 +16,22 @@ document.addEventListener('DOMContentLoaded', function() {
         const apiKey = "dc061998-8b89-44ca-8980-c58502b956fe"; // Ersetzen Sie dies mit Ihrem Public Key aus dem Vapi Dashboard
         const assistant = "471f2e1b-d4e9-4c78-8ad5-9ce7afd8e479"; // Ersetzen Sie dies mit Ihrer Assistant ID
         
-        // Button-Konfiguration
+        // Button-Konfiguration für den Floating Button
         const buttonConfig = {
             // Benutzerdefiniertes Styling für den Anruf-Button
             buttonStyle: {
                 background: '#1da1f2',
-                borderRadius: '25px',
-                padding: '12px 30px',
+                borderRadius: '50%', // Runder Button
+                padding: '15px',
                 fontSize: '16px',
                 fontWeight: '600',
                 boxShadow: '0 4px 15px rgba(29, 161, 242, 0.4)',
-                color: 'white'
+                color: 'white',
+                width: '60px',
+                height: '60px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
             },
             // Benutzerdefiniertes Styling für das Anruf-Panel
             panelStyle: {
@@ -35,10 +40,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 border: '2px solid #e1e8ed',
                 backdropFilter: 'blur(10px)'
             },
-            // Text auf dem Anruf-Button
-            buttonText: "Jetzt anrufen",
-            // Position des Widgets auf der Seite
-            position: "bottom-right"
+            // Icon statt Text für den Floating Button
+            buttonMode: "icon",
+            // Position des Widgets auf der Seite - immer unten rechts
+            position: "bottom-right",
+            // Immer sichtbar beim Scrollen
+            sticky: true,
+            // Abstand vom Rand
+            offset: {
+                bottom: '20px',
+                right: '20px'
+            }
         };
 
         // VAPI SDK initialisieren
