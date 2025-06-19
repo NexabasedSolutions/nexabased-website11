@@ -1,0 +1,1358 @@
+@import url('https://fonts.googleapis.com/css2?family=Just+Another+Hand&display=swap');
+
+/* General Styles - Apple Inspired */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #ffffff 0%, #f0f8ff 100%); /* White to very light AliceBlue gradient */
+    color: #1d1d1f; /* Dark grey text */
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+    color: #000; /* Black headings */
+}
+
+h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #e5e5e7;
+    padding-bottom: 10px;
+}
+
+a {
+    color: #29ABE2; /* Use logo teal/cyan for links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Header & Navigation */
+header {
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly more opaque white */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid #d2d2d7;
+    padding: 5px 0; /* Reduced padding */
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensure it's above other content */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+nav {
+    max-width: 1100px; /* Slightly wider max-width */
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 60px; /* Ensure header has consistent height */
+}
+
+#logo {
+    height: 40px; /* Adjust height as needed */
+    width: auto;
+    display: block; /* Prevents extra space below */
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li {
+    padding: 0 15px; /* Spacing between links */
+}
+
+.nav-links a {
+    color: #1d1d1f; /* Dark grey for links */
+    font-weight: 500;
+    font-size: 0.95em;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #29ABE2; /* Logo color on hover */
+    text-decoration: none;
+}
+
+.nav-cta {
+    background-color: #29ABE2;
+    color: white !important; /* Ensure white text */
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.nav-cta:hover {
+    background-color: #1f8ab8;
+    color: white !important;
+    transform: scale(1.05);
+}
+
+.burger {
+    display: none; /* Hide burger by default */
+    cursor: pointer;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: #1d1d1f;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Main Content & Sections */
+main {
+    max-width: 1100px; /* Match nav max-width */
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+section {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 40px; /* Increased padding */
+    margin-bottom: 40px; /* Increased margin */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    animation: fadeIn 0.6s ease-out forwards;
+    opacity: 0; /* Start hidden for animation */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Apply staggered delay to sections */
+#hero { animation-delay: 0.1s; }
+#about-product { animation-delay: 0.2s; }
+#testimonials { animation-delay: 0.3s; } /* Added delay */
+#coming-soon { animation-delay: 0.4s; }
+#about-us { animation-delay: 0.5s; }
+#contact { animation-delay: 0.6s; }
+
+/* Hero Section */
+#hero {
+    text-align: center;
+    background: linear-gradient(135deg, #eef5ff 0%, #e6f0ff 100%);
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center items */
+}
+
+.hero-image {
+    max-width: 150px; /* Control image size */
+    height: auto;
+    margin-bottom: 30px; /* Space below image */
+    border-radius: 10px; /* Optional: round corners */
+}
+
+#hero h2 {
+    font-size: 2.8em;
+    margin-bottom: 15px;
+}
+
+#hero p {
+    font-size: 1.2em;
+    color: #515154;
+    margin-bottom: 30px;
+    max-width: 700px; /* Limit text width */
+}
+
+/* General CTA Button Style (replaces old #call-agent-button) */
+.cta-button {
+    background-color: #29ABE2; /* Logo Teal/Cyan */
+    color: white;
+    border: none;
+    padding: 15px 35px; /* Slightly larger padding */
+    font-size: 1.15em; /* Slightly larger font */
+    font-weight: 500;
+    border-radius: 25px; /* Pill shape */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    display: inline-block; /* Ensure it behaves like a block for margin/padding */
+    text-decoration: none; /* Remove underline from link */
+}
+
+.cta-button:hover {
+    background-color: #1f8ab8; /* Darker Teal/Cyan on hover */
+    color: white;
+    text-decoration: none;
+    transform: scale(1.03);
+}
+
+.cta-button:active {
+    transform: scale(0.98);
+}
+
+/* About Product Section - Benefits */
+#about-product ul {
+    /* Remove old list styles if they exist */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.benefits-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Responsive grid */
+    gap: 30px; /* Space between items */
+    margin-top: 30px;
+    text-align: center;
+}
+
+.benefit-item {
+    background-color: #f9f9f9; /* Light background for items */
+    padding: 25px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.benefit-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.07);
+}
+
+.benefit-icon {
+    font-size: 2.5em; /* Larger icons */
+    display: block;
+    margin-bottom: 15px;
+    color: #29ABE2; /* Icon color */
+}
+
+.benefit-item h4 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #1d1d1f;
+}
+
+.benefit-item p {
+    font-size: 0.95em;
+    color: #515154;
+    line-height: 1.5;
+}
+
+/* Testimonials Section */
+#testimonials {
+    background-color: #f9f9f9; /* Slightly different background */
+}
+
+#testimonials h3 {
+    text-align: center;
+    border-bottom: none; /* Remove border for centered heading */
+    margin-bottom: 10px;
+}
+
+#testimonials > p { /* Target the intro paragraph */
+    text-align: center;
+    color: #515154;
+    margin-bottom: 40px;
+    font-size: 1.1em;
+}
+
+.testimonial-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.testimonial-card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content */
+    text-align: center;
+}
+
+.testimonial-card p {
+    font-style: italic;
+    color: #333;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Allow text to take available space */
+}
+
+.testimonial-card cite {
+    font-weight: 600;
+    color: #1d1d1f;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.client-logo {
+    max-height: 40px; /* Control logo size */
+    width: auto;
+    opacity: 0.7; /* Make logos subtle */
+    margin-top: auto; /* Push logo to bottom if card heights vary */
+}
+
+/* Coming Soon Section & Scroll Container */
+#coming-soon {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 40px 0; /* Adjust padding */
+    animation: none;
+    opacity: 1;
+}
+
+#coming-soon h2 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 30px;
+    padding: 0 20px;
+}
+
+.scroll-container {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 20px;
+    gap: 20px;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f5f5f7;
+}
+
+.scroll-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+    background: #f5f5f7;
+    border-radius: 4px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+    border: 2px solid #f5f5f7;
+}
+
+.product-card {
+    flex: 0 0 auto;
+    width: 300px;
+    background-color: #1c1c1e;
+    color: #f5f5f7;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    white-space: normal;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 0.6s ease-out forwards;
+    opacity: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.product-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.product-card h4 {
+    margin-top: 0;
+    font-size: 1.3em;
+    color: #29ABE2;
+    margin-bottom: 15px;
+}
+
+.product-card p {
+    font-size: 0.95em;
+    color: #e5e5e7;
+}
+
+.product-card p strong {
+    color: #ffffff;
+}
+
+/* Contact Section */
+#contact h3 {
+    text-align: center;
+    border-bottom: none;
+}
+
+#contact p {
+    text-align: center;
+    color: #333;
+    font-size: 1.1em;
+}
+
+#contact p a {
+    font-weight: 500;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px 20px; /* Increased padding */
+    margin-top: 40px;
+    font-size: 0.9em;
+    color: #6e6e73;
+    border-top: 1px solid #e5e5e7; /* Add subtle top border */
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 992px) { /* Adjust breakpoint for nav */
+    .nav-links {
+        position: absolute;
+        right: 0;
+        top: 65px; /* Height of nav bar */
+        background-color: rgba(255, 255, 255, 0.95); /* Match header */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 60%; /* Adjust width */
+        height: calc(100vh - 65px); /* Full height minus nav */
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in;
+        padding-top: 20px;
+        border-left: 1px solid #d2d2d7;
+        box-shadow: -2px 0 5px rgba(0,0,0,0.05);
+    }
+
+    .nav-links li {
+        opacity: 0;
+        padding: 20px 0; /* Vertical padding */
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links li a {
+        font-size: 1.1em;
+    }
+
+    .nav-cta {
+        padding: 10px 25px; /* Adjust padding */
+        margin-top: 15px;
+    }
+
+    .burger {
+        display: block; /* Show burger */
+    }
+
+    .nav-active {
+        transform: translateX(0%);
+    }
+
+    @keyframes navLinkFade {
+        from {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0px);
+        }
+    }
+
+    /* Burger Animation */
+    .toggle .line1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .toggle .line2 {
+        opacity: 0;
+    }
+    .toggle .line3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        margin: 30px auto;
+        padding: 0 15px;
+    }
+    section {
+        padding: 30px; /* Adjust padding */
+        margin-bottom: 30px;
+    }
+    #hero h2 {
+        font-size: 2.2em;
+    }
+    #hero p {
+        font-size: 1.1em;
+    }
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 1.05em;
+    }
+    h3 {
+        font-size: 1.6em;
+    }
+    .benefits-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+    .testimonial-container {
+        grid-template-columns: 1fr; /* Stack testimonials */
+        gap: 20px;
+    }
+    .product-card {
+        width: 280px; /* Slightly smaller cards */
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        padding: 0 15px;
+    }
+    #logo {
+        height: 35px;
+    }
+    #hero {
+        padding: 40px 20px;
+    }
+    .hero-image {
+        max-width: 120px;
+        margin-bottom: 20px;
+    }
+    #hero h2 {
+        font-size: 1.9em;
+    }
+    #hero p {
+        font-size: 1em;
+    }
+    .cta-button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+    section {
+        padding: 25px;
+        margin-bottom: 25px;
+    }
+    h3 {
+        font-size: 1.4em;
+    }
+    .benefit-icon {
+        font-size: 2.2em;
+    }
+    .benefit-item h4 {
+        font-size: 1.1em;
+    }
+    .benefit-item p {
+        font-size: 0.9em;
+    }
+    .testimonial-card {
+        padding: 25px;
+    }
+    #coming-soon h2 {
+        font-size: 1.8em;
+    }
+    .product-card {
+        width: 250px; /* Even smaller cards */
+        padding: 20px;
+    }
+    .product-card h4 {
+        font-size: 1.2em;
+    }
+    .product-card p {
+        font-size: 0.9em;
+    }
+    footer {
+        padding: 20px 15px;
+    }
+    .nav-links {
+        width: 70%; /* Wider menu on small screens */
+    }
+}
+
+
+
+/* AI Quotes Marquee Section */
+#ai-quotes {
+    background-color: #f9f9f9; /* Match previous testimonial background */
+    overflow: hidden; /* Hide overflowing content for marquee */
+}
+
+#ai-quotes h3 {
+    text-align: center;
+    border-bottom: none;
+    margin-bottom: 10px;
+}
+
+#ai-quotes > p { /* Target the intro paragraph */
+    text-align: center;
+    color: #515154;
+    margin-bottom: 40px;
+    font-size: 1.1em;
+}
+
+.quote-marquee {
+    width: 100%;
+    overflow: hidden;
+    position: relative; /* Needed for potential pseudo-elements like fades */
+}
+
+/* Optional: Add fades on the sides */
+/*
+.quote-marquee::before, .quote-marquee::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50px; 
+    z-index: 2;
+}
+.quote-marquee::before {
+    left: 0;
+    background: linear-gradient(to right, #f9f9f9, transparent);
+}
+.quote-marquee::after {
+    right: 0;
+    background: linear-gradient(to left, #f9f9f9, transparent);
+}
+*/
+
+.quote-track {
+    display: flex;
+    width: calc(350px * 12); /* Estimate: Card width (300px + 2*25px padding) * number of cards (6 original + 6 duplicates) */
+    animation: marquee 60s linear infinite; /* Adjust duration as needed */
+    gap: 30px; /* Keep the gap consistent */
+}
+
+.quote-card {
+    flex-shrink: 0; /* Prevent cards from shrinking */
+    width: 300px; /* Keep original card width */
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.quote-card p {
+    font-style: italic;
+    color: #333;
+    margin-bottom: 20px;
+    flex-grow: 1;
+    font-size: 0.95em; /* Adjust font size if needed */
+}
+
+.quote-card cite {
+    font-weight: 600;
+    color: #1d1d1f;
+    margin-top: auto; /* Push cite to bottom */
+    font-size: 0.9em;
+}
+
+/* Stop animation on hover */
+.quote-marquee:hover .quote-track {
+    animation-play-state: paused;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Translate by the width of the first 6 cards + gaps */
+        transform: translateX(calc(-350px * 6 - 30px * 6)); 
+    }
+}
+
+/* Remove old testimonial styles */
+/*
+.testimonial-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+.testimonial-card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-align: center;
+}
+.testimonial-card p {
+    font-style: italic;
+    color: #333;
+    margin-bottom: 20px;
+    flex-grow: 1; 
+}
+.testimonial-card cite {
+    font-weight: 600;
+    color: #1d1d1f;
+    margin-bottom: 15px;
+    display: block;
+}
+.client-logo {
+    max-height: 40px; 
+    width: auto;
+    opacity: 0.7; 
+    margin-top: auto; 
+}
+*/
+
+
+
+
+/* Pricing Section Styles */
+#pricing {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #f0f8ff; /* Light blue, consistent with other sections if applicable, or a subtle contrast */
+}
+
+#pricing h3 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.pricing-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.pricing-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 300px;
+    max-width: 100%;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.pricing-card h4 {
+    font-size: 1.8em;
+    color: #007bff; /* Primary color for plan names */
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.pricing-card .price {
+    font-size: 2.8em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.pricing-card .price-period {
+    font-size: 0.5em;
+    font-weight: normal;
+    color: #666;
+}
+
+.pricing-card .price-detail {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.pricing-card ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.pricing-card ul li {
+    font-size: 1em;
+    color: #444;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.pricing-card ul li::before {
+    content: "✓"; /* Using the checkmark from HTML directly, but could use a pseudo-element if preferred */
+    color: #28a745; /* Green checkmark */
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+.pricing-card .cta-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+/* Highlight for Standard and Business plans - similar to hallopetra.de */
+.pricing-card.standard-plan {
+    border: 2px solid #007bff; /* Primary color border */
+}
+
+.pricing-card.business-plan {
+    background-color: #007bff; /* Primary color background */
+    color: #ffffff;
+}
+
+.pricing-card.business-plan h4,
+.pricing-card.business-plan .price,
+.pricing-card.business-plan .price-period,
+.pricing-card.business-plan .price-detail,
+.pricing-card.business-plan ul li {
+    color: #ffffff;
+}
+
+.pricing-card.business-plan ul li::before {
+    color: #e6f7ff; /* Lighter checkmark for dark background */
+}
+
+.pricing-card.business-plan .cta-button {
+    background-color: #ffffff;
+    color: #007bff;
+    border: 1px solid #007bff;
+}
+
+.pricing-card.business-plan .cta-button:hover {
+    background-color: #f0f8ff;
+}
+
+/* Responsive adjustments for pricing cards */
+@media (max-width: 992px) {
+    .pricing-card {
+        width: 45%;
+    }
+}
+
+@media (max-width: 768px) {
+    #pricing h3 {
+        font-size: 2em;
+    }
+    .pricing-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .pricing-card {
+        width: 80%;
+        margin-bottom: 20px; /* Add margin for stacked cards */
+    }
+    .pricing-card:last-child {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .pricing-card {
+        width: 95%;
+    }
+    .pricing-card h4 {
+        font-size: 1.6em;
+    }
+    .pricing-card .price {
+        font-size: 2.4em;
+    }
+}
+
+
+
+/* --- MODIFICATIONS FOR PRICING SECTION (Horizontal Layout, Animation, Sizing) --- */
+
+/* Keyframes for card entry animation */
+@keyframes cardEntry {
+    from {
+        opacity: 0;
+        transform: translateX(-30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+#pricing .pricing-container {
+    display: flex;
+    justify-content: space-around; /* Distribute cards evenly */
+    flex-wrap: nowrap; /* Ensure they stay in one line on wider screens */
+    gap: 20px; /* Gap between cards */
+}
+
+#pricing .pricing-card {
+    flex: 1 1 300px; /* Allow cards to grow/shrink, base width 300px */
+    max-width: 320px; /* Max width for each card to fit three across */
+    min-width: 280px; /* Min width before wrapping (handled by media queries) */
+    padding: 25px; /* Adjusted padding */
+    display: flex; /* Use flexbox for internal alignment */
+    flex-direction: column; /* Stack card content vertically */
+    /* Animation properties */
+    opacity: 0; /* Start hidden for animation */
+    animation: cardEntry 0.6s ease-out forwards;
+}
+
+/* Staggered animation delay for cards */
+#pricing .pricing-card:nth-child(1) {
+    animation-delay: 0.2s;
+}
+#pricing .pricing-card:nth-child(2) {
+    animation-delay: 0.4s;
+}
+#pricing .pricing-card:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+#pricing .pricing-card ul {
+    flex-grow: 1; /* Make sure the list takes available space, pushing button down */
+    margin-bottom: 20px; /* Adjusted margin */
+}
+
+/* Styling for the "Wählen" button inside pricing cards */
+#pricing .pricing-card .cta-button {
+    padding: 10px 15px; /* Smaller padding */
+    font-size: 0.95em;   /* Smaller font size */
+    width: auto;        /* Auto width based on content and padding */
+    min-width: 100px;   /* Minimum width for the button */
+    align-self: center; /* Center button within the flex card */
+    margin-top: auto;   /* Push button to the bottom of the card if card heights vary */
+    display: inline-block; /* To allow centering via align-self with auto width */
+}
+
+/* Responsive adjustments for pricing cards */
+@media (max-width: 992px) { /* Tablet view */
+    #pricing .pricing-container {
+        flex-wrap: wrap; /* Allow wrapping */
+        justify-content: center; /* Center cards when they wrap */
+    }
+    #pricing .pricing-card {
+        flex-basis: 45%; /* Two cards per row, allow shrinking/growing */
+        max-width: 350px; /* Adjust max-width for two cards */
+        margin-bottom: 20px; /* Add margin when they wrap */
+        /* Disable entry animation on wrap for simplicity */
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+}
+
+@media (max-width: 768px) { /* Mobile view */
+    #pricing .pricing-container {
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: nowrap; /* Prevent wrapping when in column */
+    }
+    #pricing .pricing-card {
+        flex-basis: auto; /* Reset flex-basis */
+        width: 90%;      /* Wider cards when stacked */
+        max-width: 400px; /* Max width for stacked cards */
+        margin-bottom: 20px;
+        /* Ensure animation is off or reset */
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+    #pricing .pricing-card:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/* Ensure checkmarks are styled correctly (this rule should already exist and be correct) */
+#pricing .pricing-card ul li::before {
+    content: "\2713"; /* Unicode for checkmark, ensures it's just one */
+    color: #28a745; 
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+/* Specific button style for business plan (ensure it's maintained) */
+#pricing .pricing-card.business-plan .cta-button {
+    background-color: #ffffff;
+    color: #007bff;
+    border: 1px solid #007bff;
+}
+
+#pricing .pricing-card.business-plan .cta-button:hover {
+    background-color: #f0f8ff;
+}
+
+
+
+/* Nächste Schritte Section Styles */
+#next-steps {
+    background-color: #f9f9f9; /* Light grey background, similar to AI quotes or a subtle variant */
+    padding: 60px 20px;
+    text-align: center;
+}
+
+#next-steps h2 {
+    font-size: 2.2em;
+    color: #1d1d1f;
+    margin-bottom: 15px;
+}
+
+#next-steps > p {
+    font-size: 1.1em;
+    color: #515154;
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.next-steps-options-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.next-steps-option-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    flex: 1 1 300px; /* Flex properties for responsiveness */
+    max-width: 400px; /* Max width for each card */
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center icon and text */
+    text-align: center;
+}
+
+.next-steps-option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.next-steps-icon-container {
+    background-color: #e6f0ff; /* Light blue background for icon */
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.next-steps-icon {
+    font-size: 2.5em;
+    color: #29ABE2; /* Main theme blue */
+}
+
+.next-steps-option-card h4 {
+    font-size: 1.4em;
+    color: #1d1d1f;
+    margin-bottom: 10px;
+}
+
+.next-steps-option-card p {
+    font-size: 0.95em;
+    color: #515154;
+    line-height: 1.6;
+}
+
+#next-steps .cta-button {
+    margin-top: 20px; /* Add some space above the button if it's below the cards */
+}
+
+/* Ensure pricing card CSS is correct for standard and business plans */
+.pricing-card.standard-plan {
+    border: 2px solid #e0e0e0; /* Default border for non-highlighted */
+    background-color: #ffffff;
+}
+
+.pricing-card.standard-plan h4,
+.pricing-card.standard-plan .price,
+.pricing-card.standard-plan .price-period,
+.pricing-card.standard-plan .price-detail,
+.pricing-card.standard-plan ul li {
+    color: #1d1d1f; /* Default text color */
+}
+
+.pricing-card.standard-plan .cta-button {
+    background-color: #29ABE2;
+    color: white;
+    border: 1px solid #29ABE2;
+}
+.pricing-card.standard-plan .cta-button:hover {
+    background-color: #1f8ab8;
+    color: white;
+}
+
+
+/* This is the HIGHLIGHTED plan (was business, now standard) */
+.pricing-card.business-plan { 
+    background-color: #29ABE2; /* Blue background */
+    color: #ffffff; /* White text */
+    border: 2px solid #29ABE2; /* Blue border */
+    transform: scale(1.05); /* Slightly larger */
+}
+
+.pricing-card.business-plan h4,
+.pricing-card.business-plan .price,
+.pricing-card.business-plan .price-period,
+.pricing-card.business-plan .price-detail,
+.pricing-card.business-plan ul li {
+    color: #ffffff;
+}
+
+.pricing-card.business-plan .cta-button {
+    background-color: #ffffff;
+    color: #29ABE2;
+    border: 1px solid #29ABE2; 
+}
+
+.pricing-card.business-plan .cta-button:hover {
+    background-color: #f0f0f0;
+    color: #1f8ab8;
+}
+
+/* Ensure the original .pricing-card.standard-plan (which is now for the Business model) has a blue border if it's the one that should be outlined in blue */
+/* If the user meant the *new* standard plan (which is .pricing-card.business-plan) should have a blue border, that's covered above. */
+/* If the *actual* Business plan (now styled by .pricing-card.standard-plan) needs a blue outline, this is it: */
+.pricing-card.standard-plan { /* This class is now on the Business Plan card */
+    border: 2px solid #29ABE2; /* Blue border for emphasis as requested */
+}
+
+
+
+/* --- STYLES FOR PROMO ARROWS AND TEXT (V2) --- */
+.hero-cta-container,
+.next-steps-cta-container {
+    /* Container for the button and the promo text/arrow */
+    /* The button itself is centered by its parent section's text-align: center or flex properties */
+    /* This container needs to be relative for absolute positioning of the promo */
+    position: relative;
+    /* Ensure it doesn't collapse if only absolutely positioned children */
+    min-height: 50px; /* Approx button height */
+    margin-top: 20px;
+}
+
+.promo-arrow-container {
+    display: flex;
+    align-items: center;
+    position: absolute; /* Positioned relative to .hero-cta-container or .next-steps-cta-container */
+}
+
+.promo-text {
+    font-family: 'Caveat', cursive;
+    font-size: 1.5em; /* Increased size for handwritten effect */
+    color: #2c2c2c; /* Slightly darker than default text for emphasis */
+    font-weight: 400; /* Caveat looks good at normal weight */
+    line-height: 1.2;
+    white-space: nowrap; /* Prevent text from wrapping, adjust if too long */
+}
+
+.promo-arrow {
+    height: 55px; /* Default arrow height */
+    width: auto;
+    flex-shrink: 0;
+}
+
+/* Hero Section: Text -> Arrow -> Button (Arrow & Text to the LEFT of Button) */
+.hero-promo {
+    /* Position to the left of the (centered) button */
+    /* Button is approx 180-200px wide. Half is 90-100px. */
+    right: calc(50% + 100px); /* Move left from center: half button width + space */ 
+    bottom: 15px; /* Align vertically with the button, adjust as needed */
+    flex-direction: row-reverse; /* Text first, then arrow (arrow is on the right of text) */
+}
+
+.hero-promo .promo-text {
+    margin-right: 8px; /* Space between text and arrow */
+}
+
+.hero-promo .promo-arrow {
+    transform: scaleX(-1) rotate(-30deg); /* Flip arrow to point from left-to-right, adjust rotation */
+    height: 60px;
+}
+
+/* Next Steps Section: Text -> Arrow -> Button (Arrow & Text to the LEFT of Button) */
+.next-steps-promo {
+    /* Position to the left of the (centered) button */
+    /* Button is approx 150-170px wide. Half is 75-85px. */
+    right: calc(50% + 90px); /* Move left from center: half button width + space */
+    bottom: 10px; /* Align vertically with the button */
+    flex-direction: row-reverse; /* Text first, then arrow */
+}
+
+.next-steps-promo .promo-text {
+    margin-right: 8px; /* Space between text and arrow */
+}
+
+.next-steps-promo .promo-arrow {
+    transform: scaleX(-1) rotate(-25deg); /* Flip arrow to point from left-to-right, adjust rotation */
+    height: 50px;
+}
+
+/* Responsive adjustments for promo arrows and text */
+@media screen and (max-width: 992px) { /* Adjust breakpoint if needed */
+    .hero-promo, .next-steps-promo {
+        /* Stack them below the button on smaller screens for simplicity */
+        position: static; /* Revert to flow */
+        transform: none;
+        flex-direction: column; /* Stack text and arrow vertically */
+        align-items: center; /* Center them */
+        margin-top: 15px; /* Space below button */
+        width: 100%;
+    }
+    .hero-promo .promo-text,
+    .next-steps-promo .promo-text {
+        margin-right: 0;
+        margin-bottom: 8px; /* Space between text and arrow */
+        text-align: center;
+        white-space: normal; /* Allow text to wrap */
+        font-size: 1.3em;
+    }
+    .hero-promo .promo-arrow {
+        transform: rotate(90deg); /* Pointing downwards to the button (which is now above) */
+        margin: 0 auto 5px auto; /* Center arrow */
+        height: 45px;
+    }
+    .next-steps-promo .promo-arrow {
+        transform: rotate(90deg);
+        margin: 0 auto 5px auto; /* Center arrow */
+        height: 40px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .promo-text {
+        font-size: 1.2em;
+    }
+    .hero-promo .promo-arrow, .next-steps-promo .promo-arrow {
+        height: 35px;
+    }
+}
+
+
+
+/* --- STYLES FOR PROMO ARROWS AND TEXT (V3 - matching new references) --- */
+.hero-cta-container, .next-steps-cta-container {
+    position: relative;
+    display: inline-block; /* Keep button and promo together if possible */
+}
+
+.promo-arrow-container {
+    display: flex; /* Use flex to align text and arrow */
+    align-items: center; /* Default alignment */
+    position: absolute;
+    width: auto; /* Let content define width initially */
+    z-index: 10; /* Ensure it's above other elements if needed */
+}
+
+.promo-arrow {
+    height: auto; /* Maintain aspect ratio */
+    flex-shrink: 0; /* Prevent arrow from shrinking */
+}
+
+.promo-text {
+    font-family: 'Just Another Hand', cursive;
+    color: #000000; /* Black text */
+    line-height: 1.2; /* Adjust for readability */
+    margin: 0;
+    white-space: normal; /* Allow text to wrap if needed, though it's short */
+}
+
+/* Specific positioning for Hero Section Promo (IMG_1121.jpg - right side) */
+.hero-promo {
+    width: 180px; /* Adjusted width */
+    right: calc(100% + 5px); /* Position to the left of the button container */
+    top: 60%; /* Align vertically with the button center */
+    transform: translateY(-50%); /* Adjust for vertical centering */
+    flex-direction: row-reverse; /* Arrow first (left), then text (right of arrow) */
+    justify-content: flex-end; /* Align content to the right (towards the button) */
+}
+
+.hero-promo .promo-text {
+    font-size: 28px; /* Adjusted from image */
+    text-align: right; /* Text aligns to the right, towards arrow */
+    margin-right: 5px; /* Space between text and arrow */
+}
+
+.hero-promo .promo-arrow {
+    width: 55px; /* Adjusted from image */
+}
+
+/* Specific positioning for Next Steps Section Promo (IMG_8934 2.jpg) */
+.next-steps-promo {
+    width: 200px; /* Adjusted width */
+    right: calc(100% + 10px); /* Position to the left of the button container */
+    top: 35%; /* Adjusted based on image */
+    transform: translateY(-50%);
+    flex-direction: row-reverse; /* Arrow first (left), then text (right of arrow) */
+    justify-content: flex-end;
+}
+
+.next-steps-promo .promo-text {
+    font-size: 30px; /* Adjusted from image */
+    text-align: right;
+    margin-right: 8px; /* Space between text and arrow */
+}
+
+.next-steps-promo .promo-arrow {
+    width: 65px; /* Adjusted from image */
+}
+
+/* Responsive adjustments for promo arrows/text */
+@media (max-width: 992px) { 
+    .promo-arrow-container {
+        position: static;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px; /* Increased space */
+        width: 100%;
+        text-align: center;
+    }
+    .hero-promo, .next-steps-promo {
+        width: 90%;
+        max-width: 280px; /* Limit width on smaller screens */
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center; /* Center content */
+        flex-direction: column-reverse; /* Text above arrow */
+    }
+    .hero-promo .promo-text, .next-steps-promo .promo-text {
+        text-align: center;
+        font-size: 24px; /* Adjust for smaller screens */
+        margin-right: 0;
+        margin-bottom: 8px; /* Space between text and arrow */
+    }
+    .hero-promo .promo-arrow, .next-steps-promo .promo-arrow {
+        width: 50px; /* Smaller arrow */
+        transform: none !important; /* Reset any desktop transforms */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-promo .promo-text, .next-steps-promo .promo-text {
+        font-size: 22px;
+    }
+    .hero-promo .promo-arrow, .next-steps-promo .promo-arrow {
+        width: 45px;
+    }
+}
+

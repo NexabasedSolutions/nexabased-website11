@@ -1,0 +1,99 @@
+.sticker-container {
+    position: relative;
+    display: inline-block;
+}
+
+.sticker-image-right, .sticker-image-left {
+    position: absolute;
+    max-width: 300px;
+    height: auto;
+    z-index: 10;
+}
+
+/* Position for the hero section sticker */
+.hero-sticker {
+    position: relative;
+}
+
+.hero-sticker .sticker-image-right {
+    position: absolute;
+    right: -350px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hero-sticker .sticker-image-left {
+    position: absolute;
+    left: -220px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Position for the next-steps section sticker */
+.next-steps-cta-container {
+    position: relative;
+    margin: 30px auto;
+    text-align: center;
+}
+
+.next-steps-cta-container .sticker-image-right {
+    position: absolute;
+    right: -220px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.next-steps-cta-container .sticker-image-left {
+    position: absolute;
+    left: -350px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .sticker-image-right, .sticker-image-left {
+        max-width: 250px;
+    }
+    
+    .hero-sticker .sticker-image-right {
+        right: -300px;
+    }
+    
+    .next-steps-cta-container .sticker-image-left {
+        left: -300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sticker-image-right, .sticker-image-left {
+        max-width: 200px;
+    }
+    
+    .hero-sticker .sticker-image-right {
+        right: -250px;
+    }
+    
+    .next-steps-cta-container .sticker-image-left {
+        left: -250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sticker-image-right, .sticker-image-left {
+        max-width: 120px;
+    }
+    
+    .hero-sticker .sticker-image-right {
+        right: -180px;
+    }
+    
+    /* Position the demo sticker above the button on mobile */
+    .next-steps-cta-container .sticker-image-left {
+        position: absolute;
+        left: auto;
+        right: auto;
+        top: -150px;
+        transform: none;
+    }
+}
