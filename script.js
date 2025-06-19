@@ -1,17 +1,32 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Original Call Button Logic (commented out as button is now a link)
-    /*
-    const callButton = document.getElementById('call-agent-button');
-    if (callButton) {
-        callButton.addEventListener('click', function() {
+    // Demo Button Call Functionality for the main demo button
+    const demoButton = document.getElementById('demo-button');
+    if (demoButton) {
+        demoButton.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default anchor behavior
             // Initiate a phone call using the tel: URI scheme
-            window.location.href = 'tel:0123456';
+            window.location.href = 'tel:+4974768959987';
             
             // Optional: Add analytics or tracking here if needed
-            console.log('Call initiated to 0123456'); 
+            console.log('Call initiated to +4974768959987 from main demo button'); 
         });
     }
-    */
+    
+    // Demo Button Call Functionality for the "Demo anfordern" button in the next-steps section
+    const nextStepsContainer = document.querySelector('.next-steps-cta-container');
+    if (nextStepsContainer) {
+        const demoRequestButton = nextStepsContainer.querySelector('.cta-button');
+        if (demoRequestButton) {
+            demoRequestButton.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevent default anchor behavior
+                // Initiate a phone call using the tel: URI scheme
+                window.location.href = 'tel:+4974768959987';
+                
+                // Optional: Add analytics or tracking here if needed
+                console.log('Call initiated to +4974768959987 from Demo anfordern button'); 
+            });
+        }
+    }
 
     // Burger Menu Logic
     const burger = document.querySelector('.burger');
