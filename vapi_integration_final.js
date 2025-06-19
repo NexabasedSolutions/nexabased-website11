@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // VAPI mit Ihren Zugangsdaten initialisieren
     const initializeVapi = () => {
         // Ersetzen Sie diese mit Ihren tatsächlichen VAPI-Zugangsdaten
-        const apiKey = "YOUR_VAPI_API_KEY"; // Ersetzen Sie dies mit Ihrem Public Key aus dem Vapi Dashboard
-        const assistant = "YOUR_ASSISTANT_ID"; // Ersetzen Sie dies mit Ihrer Assistant ID
+        const apiKey = "dc061998-8b89-44ca-8980-c58502b956fe"; // Ersetzen Sie dies mit Ihrem Public Key aus dem Vapi Dashboard
+        const assistant = "471f2e1b-d4e9-4c78-8ad5-9ce7afd8e479"; // Ersetzen Sie dies mit Ihrer Assistant ID
         
         // Button-Konfiguration
         const buttonConfig = {
